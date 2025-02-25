@@ -33,7 +33,16 @@ class PegawaiController extends ResourceController
      */
     public function show($id = null)
     {
-        //
+        $data = [
+            "message" => "success",
+            "pegawai_byid" => $this->model->find($id)
+        ];
+
+        if ($data['pegawai_byid'] == null) {
+            return $this->failNotFound('Data pegawai tidak ditemukan');
+        }
+
+        return $this->respond($data, 200);
     }
 
     /**
@@ -84,7 +93,7 @@ class PegawaiController extends ResourceController
     public function update($id = null)
     {
         $rules = $this->validate([
-            'nama' => 'required|is_unique[pegawai.nama]',
+            'nama' => 'required',
             'jabatan' => 'required',
             'bidang' => 'required',
             'alamat' => 'required',
