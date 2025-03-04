@@ -58,6 +58,7 @@ class PegawaiController extends ResourceController
             'bidang' => 'required',
             'alamat' => 'required',
             'email' => 'required',
+            'gambar' => 'uploaded[gambar]|max_size[gambar, 2048]|is_image[gambar]|mime_in[gambar, image/jpg,image/png,image/jpeg]',
         ]);
 
         if(!$rules) {
